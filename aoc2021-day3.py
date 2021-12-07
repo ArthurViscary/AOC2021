@@ -47,3 +47,45 @@ def epsilon_finder(data):
 
 #print(gamma_finder(data)*(epsilon_finder(data)))
 
+#part 2
+
+def oxygen_generator_finder(data:list):
+    #lines are 12 chars long
+    max_len = len(data[0])
+
+    for i in range(max_len):
+        zeros = 0
+        ones = 0
+        for line in data:
+            if line[i] == '1':
+                ones += 1
+            elif line[i] == '0':
+                zeros += 1
+        if ones >= zeros:
+            data = [line for line in data if line[i] == '1']
+        else:
+            data = [line for line in data if line[i] == '0']
+    return int(data[0],2)
+
+#print(oxygen_generator_finder(data))
+
+def co2_scrubber_rating(data:list):
+    max_len = len(data[0])
+    for i in range(max_len):
+        zeros = 0
+        ones = 0
+        for line in data:
+            if line[i] == '1':
+                ones += 1
+            elif line[i] == '0':
+                zeros += 1
+        if zeros <= ones:
+            data = [line for line in data if line[i] == '0']
+        else:
+            data = [line for line in data if line[i] == '1']
+        if len(data) == 1:
+            return int(data[0],2)
+
+
+#pt2 answer
+print(oxygen_generator_finder(data) * co2_scrubber_rating(data))
